@@ -1,0 +1,715 @@
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+input_1 (InputLayer)            (None, 256, 256, 1)  0
+__________________________________________________________________________________________________
+conv2d (Conv2D)                 (None, 256, 256, 16) 160         input_1[0][0]
+__________________________________________________________________________________________________
+batch_normalization (BatchNorma (None, 256, 256, 16) 64          conv2d[0][0]
+__________________________________________________________________________________________________
+activation (Activation)         (None, 256, 256, 16) 0           batch_normalization[0][0]
+__________________________________________________________________________________________________
+conv2d_1 (Conv2D)               (None, 256, 256, 16) 2320        activation[0][0]
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 256, 256, 16) 64          conv2d_1[0][0]
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 256, 256, 16) 0           batch_normalization_1[0][0]
+__________________________________________________________________________________________________
+max_pooling2d (MaxPooling2D)    (None, 128, 128, 16) 0           activation_1[0][0]
+__________________________________________________________________________________________________
+dropout (Dropout)               (None, 128, 128, 16) 0           max_pooling2d[0][0]
+__________________________________________________________________________________________________
+conv2d_2 (Conv2D)               (None, 128, 128, 32) 4640        dropout[0][0]
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 128, 128, 32) 128         conv2d_2[0][0]
+__________________________________________________________________________________________________
+activation_2 (Activation)       (None, 128, 128, 32) 0           batch_normalization_2[0][0]
+__________________________________________________________________________________________________
+conv2d_3 (Conv2D)               (None, 128, 128, 32) 9248        activation_2[0][0]
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 128, 128, 32) 128         conv2d_3[0][0]
+__________________________________________________________________________________________________
+activation_3 (Activation)       (None, 128, 128, 32) 0           batch_normalization_3[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_1 (MaxPooling2D)  (None, 64, 64, 32)   0           activation_3[0][0]
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 64, 64, 32)   0           max_pooling2d_1[0][0]
+__________________________________________________________________________________________________
+conv2d_4 (Conv2D)               (None, 64, 64, 64)   18496       dropout_1[0][0]
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 64, 64, 64)   256         conv2d_4[0][0]
+__________________________________________________________________________________________________
+activation_4 (Activation)       (None, 64, 64, 64)   0           batch_normalization_4[0][0]
+__________________________________________________________________________________________________
+conv2d_5 (Conv2D)               (None, 64, 64, 64)   36928       activation_4[0][0]
+__________________________________________________________________________________________________
+batch_normalization_5 (BatchNor (None, 64, 64, 64)   256         conv2d_5[0][0]
+__________________________________________________________________________________________________
+activation_5 (Activation)       (None, 64, 64, 64)   0           batch_normalization_5[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_2 (MaxPooling2D)  (None, 32, 32, 64)   0           activation_5[0][0]
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 32, 32, 64)   0           max_pooling2d_2[0][0]
+__________________________________________________________________________________________________
+conv2d_6 (Conv2D)               (None, 32, 32, 128)  73856       dropout_2[0][0]
+__________________________________________________________________________________________________
+batch_normalization_6 (BatchNor (None, 32, 32, 128)  512         conv2d_6[0][0]
+__________________________________________________________________________________________________
+activation_6 (Activation)       (None, 32, 32, 128)  0           batch_normalization_6[0][0]
+__________________________________________________________________________________________________
+conv2d_7 (Conv2D)               (None, 32, 32, 128)  147584      activation_6[0][0]
+__________________________________________________________________________________________________
+batch_normalization_7 (BatchNor (None, 32, 32, 128)  512         conv2d_7[0][0]
+__________________________________________________________________________________________________
+activation_7 (Activation)       (None, 32, 32, 128)  0           batch_normalization_7[0][0]
+__________________________________________________________________________________________________
+global_average_pooling2d (Globa (None, 128)          0           activation_7[0][0]
+__________________________________________________________________________________________________
+global_max_pooling2d (GlobalMax (None, 128)          0           activation_7[0][0]
+__________________________________________________________________________________________________
+reshape (Reshape)               (None, 1, 1, 128)    0           global_average_pooling2d[0][0]
+__________________________________________________________________________________________________
+reshape_1 (Reshape)             (None, 1, 1, 128)    0           global_max_pooling2d[0][0]
+__________________________________________________________________________________________________
+max_pooling2d_3 (MaxPooling2D)  (None, 16, 16, 128)  0           activation_7[0][0]
+__________________________________________________________________________________________________
+dense (Dense)                   (None, 1, 1, 16)     2064        reshape[0][0]
+                                                                 reshape_1[0][0]
+__________________________________________________________________________________________________
+dropout_3 (Dropout)             (None, 16, 16, 128)  0           max_pooling2d_3[0][0]
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 1, 1, 128)    2176        dense[0][0]
+                                                                 dense[1][0]
+__________________________________________________________________________________________________
+conv2d_8 (Conv2D)               (None, 16, 16, 256)  295168      dropout_3[0][0]
+__________________________________________________________________________________________________
+add (Add)                       (None, 1, 1, 128)    0           dense_1[0][0]
+                                                                 dense_1[1][0]
+__________________________________________________________________________________________________
+batch_normalization_8 (BatchNor (None, 16, 16, 256)  1024        conv2d_8[0][0]
+__________________________________________________________________________________________________
+activation_10 (Activation)      (None, 1, 1, 128)    0           add[0][0]
+__________________________________________________________________________________________________
+activation_8 (Activation)       (None, 16, 16, 256)  0           batch_normalization_8[0][0]
+__________________________________________________________________________________________________
+multiply (Multiply)             (None, 32, 32, 128)  0           activation_7[0][0]
+                                                                 activation_10[0][0]
+__________________________________________________________________________________________________
+conv2d_9 (Conv2D)               (None, 16, 16, 256)  590080      activation_8[0][0]
+__________________________________________________________________________________________________
+lambda (Lambda)                 (None, 32, 32, 1)    0           multiply[0][0]
+__________________________________________________________________________________________________
+lambda_1 (Lambda)               (None, 32, 32, 1)    0           multiply[0][0]
+__________________________________________________________________________________________________
+batch_normalization_9 (BatchNor (None, 16, 16, 256)  1024        conv2d_9[0][0]
+__________________________________________________________________________________________________
+concatenate (Concatenate)       (None, 32, 32, 2)    0           lambda[0][0]
+                                                                 lambda_1[0][0]
+__________________________________________________________________________________________________
+activation_9 (Activation)       (None, 16, 16, 256)  0           batch_normalization_9[0][0]
+__________________________________________________________________________________________________
+conv2d_10 (Conv2D)              (None, 32, 32, 1)    98          concatenate[0][0]
+__________________________________________________________________________________________________
+global_average_pooling2d_1 (Glo (None, 64)           0           activation_5[0][0]
+__________________________________________________________________________________________________
+global_max_pooling2d_1 (GlobalM (None, 64)           0           activation_5[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose (Conv2DTranspo (None, 32, 32, 128)  295040      activation_9[0][0]
+__________________________________________________________________________________________________
+multiply_1 (Multiply)           (None, 32, 32, 128)  0           multiply[0][0]
+                                                                 conv2d_10[0][0]
+__________________________________________________________________________________________________
+reshape_2 (Reshape)             (None, 1, 1, 64)     0           global_average_pooling2d_1[0][0]
+__________________________________________________________________________________________________
+reshape_3 (Reshape)             (None, 1, 1, 64)     0           global_max_pooling2d_1[0][0]
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 32, 32, 256)  0           conv2d_transpose[0][0]
+                                                                 multiply_1[0][0]
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 1, 1, 8)      520         reshape_2[0][0]
+                                                                 reshape_3[0][0]
+__________________________________________________________________________________________________
+dropout_4 (Dropout)             (None, 32, 32, 256)  0           concatenate_1[0][0]
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 1, 1, 64)     576         dense_2[0][0]
+                                                                 dense_2[1][0]
+__________________________________________________________________________________________________
+conv2d_11 (Conv2D)              (None, 32, 32, 128)  295040      dropout_4[0][0]
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 1, 1, 64)     0           dense_3[0][0]
+                                                                 dense_3[1][0]
+__________________________________________________________________________________________________
+batch_normalization_10 (BatchNo (None, 32, 32, 128)  512         conv2d_11[0][0]
+__________________________________________________________________________________________________
+activation_13 (Activation)      (None, 1, 1, 64)     0           add_1[0][0]
+__________________________________________________________________________________________________
+activation_11 (Activation)      (None, 32, 32, 128)  0           batch_normalization_10[0][0]
+__________________________________________________________________________________________________
+multiply_2 (Multiply)           (None, 64, 64, 64)   0           activation_5[0][0]
+                                                                 activation_13[0][0]
+__________________________________________________________________________________________________
+conv2d_12 (Conv2D)              (None, 32, 32, 128)  147584      activation_11[0][0]
+__________________________________________________________________________________________________
+lambda_2 (Lambda)               (None, 64, 64, 1)    0           multiply_2[0][0]
+__________________________________________________________________________________________________
+lambda_3 (Lambda)               (None, 64, 64, 1)    0           multiply_2[0][0]
+__________________________________________________________________________________________________
+batch_normalization_11 (BatchNo (None, 32, 32, 128)  512         conv2d_12[0][0]
+__________________________________________________________________________________________________
+concatenate_2 (Concatenate)     (None, 64, 64, 2)    0           lambda_2[0][0]
+                                                                 lambda_3[0][0]
+__________________________________________________________________________________________________
+activation_12 (Activation)      (None, 32, 32, 128)  0           batch_normalization_11[0][0]
+__________________________________________________________________________________________________
+conv2d_13 (Conv2D)              (None, 64, 64, 1)    98          concatenate_2[0][0]
+__________________________________________________________________________________________________
+global_average_pooling2d_2 (Glo (None, 32)           0           activation_3[0][0]
+__________________________________________________________________________________________________
+global_max_pooling2d_2 (GlobalM (None, 32)           0           activation_3[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose_1 (Conv2DTrans (None, 64, 64, 64)   73792       activation_12[0][0]
+__________________________________________________________________________________________________
+multiply_3 (Multiply)           (None, 64, 64, 64)   0           multiply_2[0][0]
+                                                                 conv2d_13[0][0]
+__________________________________________________________________________________________________
+reshape_4 (Reshape)             (None, 1, 1, 32)     0           global_average_pooling2d_2[0][0]
+__________________________________________________________________________________________________
+reshape_5 (Reshape)             (None, 1, 1, 32)     0           global_max_pooling2d_2[0][0]
+__________________________________________________________________________________________________
+concatenate_3 (Concatenate)     (None, 64, 64, 128)  0           conv2d_transpose_1[0][0]
+                                                                 multiply_3[0][0]
+__________________________________________________________________________________________________
+dense_4 (Dense)                 (None, 1, 1, 4)      132         reshape_4[0][0]
+                                                                 reshape_5[0][0]
+__________________________________________________________________________________________________
+dropout_5 (Dropout)             (None, 64, 64, 128)  0           concatenate_3[0][0]
+__________________________________________________________________________________________________
+dense_5 (Dense)                 (None, 1, 1, 32)     160         dense_4[0][0]
+                                                                 dense_4[1][0]
+__________________________________________________________________________________________________
+conv2d_14 (Conv2D)              (None, 64, 64, 64)   73792       dropout_5[0][0]
+__________________________________________________________________________________________________
+add_2 (Add)                     (None, 1, 1, 32)     0           dense_5[0][0]
+                                                                 dense_5[1][0]
+__________________________________________________________________________________________________
+batch_normalization_12 (BatchNo (None, 64, 64, 64)   256         conv2d_14[0][0]
+__________________________________________________________________________________________________
+activation_16 (Activation)      (None, 1, 1, 32)     0           add_2[0][0]
+__________________________________________________________________________________________________
+activation_14 (Activation)      (None, 64, 64, 64)   0           batch_normalization_12[0][0]
+__________________________________________________________________________________________________
+multiply_4 (Multiply)           (None, 128, 128, 32) 0           activation_3[0][0]
+                                                                 activation_16[0][0]
+__________________________________________________________________________________________________
+conv2d_15 (Conv2D)              (None, 64, 64, 64)   36928       activation_14[0][0]
+__________________________________________________________________________________________________
+lambda_4 (Lambda)               (None, 128, 128, 1)  0           multiply_4[0][0]
+__________________________________________________________________________________________________
+lambda_5 (Lambda)               (None, 128, 128, 1)  0           multiply_4[0][0]
+__________________________________________________________________________________________________
+batch_normalization_13 (BatchNo (None, 64, 64, 64)   256         conv2d_15[0][0]
+__________________________________________________________________________________________________
+concatenate_4 (Concatenate)     (None, 128, 128, 2)  0           lambda_4[0][0]
+                                                                 lambda_5[0][0]
+__________________________________________________________________________________________________
+activation_15 (Activation)      (None, 64, 64, 64)   0           batch_normalization_13[0][0]
+__________________________________________________________________________________________________
+conv2d_16 (Conv2D)              (None, 128, 128, 1)  98          concatenate_4[0][0]
+__________________________________________________________________________________________________
+global_average_pooling2d_3 (Glo (None, 16)           0           activation_1[0][0]
+__________________________________________________________________________________________________
+global_max_pooling2d_3 (GlobalM (None, 16)           0           activation_1[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose_2 (Conv2DTrans (None, 128, 128, 32) 18464       activation_15[0][0]
+__________________________________________________________________________________________________
+multiply_5 (Multiply)           (None, 128, 128, 32) 0           multiply_4[0][0]
+                                                                 conv2d_16[0][0]
+__________________________________________________________________________________________________
+reshape_6 (Reshape)             (None, 1, 1, 16)     0           global_average_pooling2d_3[0][0]
+__________________________________________________________________________________________________
+reshape_7 (Reshape)             (None, 1, 1, 16)     0           global_max_pooling2d_3[0][0]
+__________________________________________________________________________________________________
+concatenate_5 (Concatenate)     (None, 128, 128, 64) 0           conv2d_transpose_2[0][0]
+                                                                 multiply_5[0][0]
+__________________________________________________________________________________________________
+dense_6 (Dense)                 (None, 1, 1, 2)      34          reshape_6[0][0]
+                                                                 reshape_7[0][0]
+__________________________________________________________________________________________________
+dropout_6 (Dropout)             (None, 128, 128, 64) 0           concatenate_5[0][0]
+__________________________________________________________________________________________________
+dense_7 (Dense)                 (None, 1, 1, 16)     48          dense_6[0][0]
+                                                                 dense_6[1][0]
+__________________________________________________________________________________________________
+conv2d_17 (Conv2D)              (None, 128, 128, 32) 18464       dropout_6[0][0]
+__________________________________________________________________________________________________
+add_3 (Add)                     (None, 1, 1, 16)     0           dense_7[0][0]
+                                                                 dense_7[1][0]
+__________________________________________________________________________________________________
+batch_normalization_14 (BatchNo (None, 128, 128, 32) 128         conv2d_17[0][0]
+__________________________________________________________________________________________________
+activation_19 (Activation)      (None, 1, 1, 16)     0           add_3[0][0]
+__________________________________________________________________________________________________
+activation_17 (Activation)      (None, 128, 128, 32) 0           batch_normalization_14[0][0]
+__________________________________________________________________________________________________
+multiply_6 (Multiply)           (None, 256, 256, 16) 0           activation_1[0][0]
+                                                                 activation_19[0][0]
+__________________________________________________________________________________________________
+conv2d_18 (Conv2D)              (None, 128, 128, 32) 9248        activation_17[0][0]
+__________________________________________________________________________________________________
+lambda_6 (Lambda)               (None, 256, 256, 1)  0           multiply_6[0][0]
+__________________________________________________________________________________________________
+lambda_7 (Lambda)               (None, 256, 256, 1)  0           multiply_6[0][0]
+__________________________________________________________________________________________________
+batch_normalization_15 (BatchNo (None, 128, 128, 32) 128         conv2d_18[0][0]
+__________________________________________________________________________________________________
+concatenate_6 (Concatenate)     (None, 256, 256, 2)  0           lambda_6[0][0]
+                                                                 lambda_7[0][0]
+__________________________________________________________________________________________________
+activation_18 (Activation)      (None, 128, 128, 32) 0           batch_normalization_15[0][0]
+__________________________________________________________________________________________________
+conv2d_19 (Conv2D)              (None, 256, 256, 1)  98          concatenate_6[0][0]
+__________________________________________________________________________________________________
+conv2d_transpose_3 (Conv2DTrans (None, 256, 256, 16) 4624        activation_18[0][0]
+__________________________________________________________________________________________________
+multiply_7 (Multiply)           (None, 256, 256, 16) 0           multiply_6[0][0]
+                                                                 conv2d_19[0][0]
+__________________________________________________________________________________________________
+concatenate_7 (Concatenate)     (None, 256, 256, 32) 0           conv2d_transpose_3[0][0]
+                                                                 multiply_7[0][0]
+__________________________________________________________________________________________________
+dropout_7 (Dropout)             (None, 256, 256, 32) 0           concatenate_7[0][0]
+__________________________________________________________________________________________________
+conv2d_20 (Conv2D)              (None, 256, 256, 16) 4624        dropout_7[0][0]
+__________________________________________________________________________________________________
+batch_normalization_16 (BatchNo (None, 256, 256, 16) 64          conv2d_20[0][0]
+__________________________________________________________________________________________________
+activation_20 (Activation)      (None, 256, 256, 16) 0           batch_normalization_16[0][0]
+__________________________________________________________________________________________________
+conv2d_21 (Conv2D)              (None, 256, 256, 16) 2320        activation_20[0][0]
+__________________________________________________________________________________________________
+batch_normalization_17 (BatchNo (None, 256, 256, 16) 64          conv2d_21[0][0]
+__________________________________________________________________________________________________
+activation_21 (Activation)      (None, 256, 256, 16) 0           batch_normalization_17[0][0]
+__________________________________________________________________________________________________
+conv2d_22 (Conv2D)              (None, 256, 256, 1)  17          activation_21[0][0]
+==================================================================================================
+Total params: 2,170,407
+Trainable params: 2,167,463
+Non-trainable params: 2,944
+__________________________________________________________________________________________________
+Train on 2610 samples, validate on 290 samples
+Epoch 1/101
+ - 200s - loss: 0.0169 - metric_fun: 0.0083 - val_loss: 0.0075 - val_metric_fun: 0.0082
+
+Epoch 00001: val_loss improved from inf to 0.00747, saving model to ./weights/best_model_att.h5
+Epoch 2/101
+ - 174s - loss: 0.0034 - metric_fun: 0.1918 - val_loss: 0.0028 - val_metric_fun: 0.2954
+
+Epoch 00002: val_loss improved from 0.00747 to 0.00280, saving model to ./weights/best_model_att.h5
+Epoch 3/101
+ - 174s - loss: 0.0027 - metric_fun: 0.2788 - val_loss: 0.0024 - val_metric_fun: 0.3602
+
+Epoch 00003: val_loss improved from 0.00280 to 0.00244, saving model to ./weights/best_model_att.h5
+Epoch 4/101
+ - 174s - loss: 0.0024 - metric_fun: 0.3311 - val_loss: 0.0022 - val_metric_fun: 0.3429
+
+Epoch 00004: val_loss improved from 0.00244 to 0.00221, saving model to ./weights/best_model_att.h5
+Epoch 5/101
+ - 174s - loss: 0.0021 - metric_fun: 0.3654 - val_loss: 0.0020 - val_metric_fun: 0.4369
+
+Epoch 00005: val_loss improved from 0.00221 to 0.00203, saving model to ./weights/best_model_att.h5
+Epoch 6/101
+ - 174s - loss: 0.0020 - metric_fun: 0.3952 - val_loss: 0.0019 - val_metric_fun: 0.4334
+
+Epoch 00006: val_loss improved from 0.00203 to 0.00186, saving model to ./weights/best_model_att.h5
+Epoch 7/101
+ - 174s - loss: 0.0018 - metric_fun: 0.4215 - val_loss: 0.0016 - val_metric_fun: 0.4521
+
+Epoch 00007: val_loss improved from 0.00186 to 0.00160, saving model to ./weights/best_model_att.h5
+Epoch 8/101
+ - 174s - loss: 0.0017 - metric_fun: 0.4400 - val_loss: 0.0016 - val_metric_fun: 0.5023
+
+Epoch 00008: val_loss improved from 0.00160 to 0.00158, saving model to ./weights/best_model_att.h5
+Epoch 9/101
+ - 174s - loss: 0.0016 - metric_fun: 0.4573 - val_loss: 0.0015 - val_metric_fun: 0.4879
+
+Epoch 00009: val_loss improved from 0.00158 to 0.00145, saving model to ./weights/best_model_att.h5
+Epoch 10/101
+ - 174s - loss: 0.0016 - metric_fun: 0.4596 - val_loss: 0.0015 - val_metric_fun: 0.5357
+
+Epoch 00010: val_loss did not improve from 0.00145
+Epoch 11/101
+ - 174s - loss: 0.0014 - metric_fun: 0.4943 - val_loss: 0.0014 - val_metric_fun: 0.4782
+
+Epoch 00011: val_loss improved from 0.00145 to 0.00143, saving model to ./weights/best_model_att.h5
+Epoch 12/101
+ - 173s - loss: 0.0013 - metric_fun: 0.5020 - val_loss: 0.0014 - val_metric_fun: 0.4811
+
+Epoch 00012: val_loss improved from 0.00143 to 0.00141, saving model to ./weights/best_model_att.h5
+Epoch 13/101
+ - 173s - loss: 0.0013 - metric_fun: 0.5104 - val_loss: 0.0013 - val_metric_fun: 0.5574
+
+Epoch 00013: val_loss improved from 0.00141 to 0.00135, saving model to ./weights/best_model_att.h5
+Epoch 14/101
+ - 174s - loss: 0.0012 - metric_fun: 0.5271 - val_loss: 0.0013 - val_metric_fun: 0.5465
+
+Epoch 00014: val_loss improved from 0.00135 to 0.00127, saving model to ./weights/best_model_att.h5
+Epoch 15/101
+ - 173s - loss: 0.0012 - metric_fun: 0.5362 - val_loss: 0.0013 - val_metric_fun: 0.5322
+
+Epoch 00015: val_loss improved from 0.00127 to 0.00125, saving model to ./weights/best_model_att.h5
+Epoch 16/101
+ - 173s - loss: 0.0012 - metric_fun: 0.5390 - val_loss: 0.0012 - val_metric_fun: 0.5484
+
+Epoch 00016: val_loss improved from 0.00125 to 0.00125, saving model to ./weights/best_model_att.h5
+Epoch 17/101
+ - 173s - loss: 0.0011 - metric_fun: 0.5505 - val_loss: 0.0013 - val_metric_fun: 0.5039
+
+Epoch 00017: val_loss did not improve from 0.00125
+Epoch 18/101
+ - 173s - loss: 0.0010 - metric_fun: 0.5590 - val_loss: 0.0012 - val_metric_fun: 0.5962
+
+Epoch 00018: val_loss improved from 0.00125 to 0.00116, saving model to ./weights/best_model_att.h5
+Epoch 19/101
+ - 174s - loss: 0.0010 - metric_fun: 0.5665 - val_loss: 0.0011 - val_metric_fun: 0.5413
+
+Epoch 00019: val_loss improved from 0.00116 to 0.00114, saving model to ./weights/best_model_att.h5
+Epoch 20/101
+ - 173s - loss: 9.8289e-04 - metric_fun: 0.5697 - val_loss: 0.0011 - val_metric_fun: 0.5643
+
+Epoch 00020: val_loss improved from 0.00114 to 0.00111, saving model to ./weights/best_model_att.h5
+Epoch 21/101
+ - 173s - loss: 9.8836e-04 - metric_fun: 0.5717 - val_loss: 0.0011 - val_metric_fun: 0.5882
+
+Epoch 00021: val_loss improved from 0.00111 to 0.00108, saving model to ./weights/best_model_att.h5
+Epoch 22/101
+ - 173s - loss: 9.4608e-04 - metric_fun: 0.5780 - val_loss: 0.0012 - val_metric_fun: 0.5969
+
+Epoch 00022: val_loss did not improve from 0.00108
+Epoch 23/101
+ - 173s - loss: 9.2306e-04 - metric_fun: 0.5847 - val_loss: 0.0021 - val_metric_fun: 0.2727
+
+Epoch 00023: val_loss did not improve from 0.00108
+Epoch 24/101
+ - 174s - loss: 8.7999e-04 - metric_fun: 0.5912 - val_loss: 0.0013 - val_metric_fun: 0.6061
+
+Epoch 00024: val_loss did not improve from 0.00108
+Epoch 25/101
+ - 173s - loss: 8.6493e-04 - metric_fun: 0.5945 - val_loss: 0.0010 - val_metric_fun: 0.6033
+
+Epoch 00025: val_loss improved from 0.00108 to 0.00102, saving model to ./weights/best_model_att.h5
+Epoch 26/101
+ - 173s - loss: 8.3778e-04 - metric_fun: 0.5998 - val_loss: 0.0010 - val_metric_fun: 0.5833
+
+Epoch 00026: val_loss did not improve from 0.00102
+Epoch 27/101
+ - 173s - loss: 8.0748e-04 - metric_fun: 0.6070 - val_loss: 0.0010 - val_metric_fun: 0.6090
+
+Epoch 00027: val_loss did not improve from 0.00102
+Epoch 28/101
+ - 173s - loss: 8.0308e-04 - metric_fun: 0.6057 - val_loss: 0.0010 - val_metric_fun: 0.6227
+
+Epoch 00028: val_loss improved from 0.00102 to 0.00101, saving model to ./weights/best_model_att.h5
+Epoch 29/101
+ - 174s - loss: 7.7676e-04 - metric_fun: 0.6130 - val_loss: 0.0010 - val_metric_fun: 0.6273
+
+Epoch 00029: val_loss did not improve from 0.00101
+Epoch 30/101
+ - 174s - loss: 7.4737e-04 - metric_fun: 0.6182 - val_loss: 0.0011 - val_metric_fun: 0.5588
+
+Epoch 00030: val_loss did not improve from 0.00101
+Epoch 31/101
+ - 173s - loss: 8.0310e-04 - metric_fun: 0.6087 - val_loss: 9.5943e-04 - val_metric_fun: 0.6055
+
+Epoch 00031: val_loss improved from 0.00101 to 0.00096, saving model to ./weights/best_model_att.h5
+Epoch 32/101
+ - 173s - loss: 7.3282e-04 - metric_fun: 0.6234 - val_loss: 9.4068e-04 - val_metric_fun: 0.5899
+
+Epoch 00032: val_loss improved from 0.00096 to 0.00094, saving model to ./weights/best_model_att.h5
+Epoch 33/101
+ - 173s - loss: 7.0713e-04 - metric_fun: 0.6282 - val_loss: 9.2767e-04 - val_metric_fun: 0.6052
+
+Epoch 00033: val_loss improved from 0.00094 to 0.00093, saving model to ./weights/best_model_att.h5
+Epoch 34/101
+ - 173s - loss: 6.8757e-04 - metric_fun: 0.6326 - val_loss: 0.0010 - val_metric_fun: 0.6362
+
+Epoch 00034: val_loss did not improve from 0.00093
+Epoch 35/101
+ - 174s - loss: 6.7695e-04 - metric_fun: 0.6356 - val_loss: 9.4484e-04 - val_metric_fun: 0.6299
+
+Epoch 00035: val_loss did not improve from 0.00093
+Epoch 36/101
+ - 173s - loss: 6.5312e-04 - metric_fun: 0.6426 - val_loss: 9.0878e-04 - val_metric_fun: 0.6167
+
+Epoch 00036: val_loss improved from 0.00093 to 0.00091, saving model to ./weights/best_model_att.h5
+Epoch 37/101
+ - 173s - loss: 6.4138e-04 - metric_fun: 0.6441 - val_loss: 9.6998e-04 - val_metric_fun: 0.6269
+
+Epoch 00037: val_loss did not improve from 0.00091
+Epoch 38/101
+ - 173s - loss: 6.2431e-04 - metric_fun: 0.6478 - val_loss: 0.0010 - val_metric_fun: 0.5726
+
+Epoch 00038: val_loss did not improve from 0.00091
+Epoch 39/101
+ - 173s - loss: 6.1778e-04 - metric_fun: 0.6496 - val_loss: 0.0010 - val_metric_fun: 0.6254
+
+Epoch 00039: val_loss did not improve from 0.00091
+Epoch 40/101
+ - 174s - loss: 6.1026e-04 - metric_fun: 0.6512 - val_loss: 9.3023e-04 - val_metric_fun: 0.6248
+
+Epoch 00040: val_loss did not improve from 0.00091
+Epoch 41/101
+ - 173s - loss: 5.9555e-04 - metric_fun: 0.6544 - val_loss: 8.6855e-04 - val_metric_fun: 0.6248
+
+Epoch 00041: val_loss improved from 0.00091 to 0.00087, saving model to ./weights/best_model_att.h5
+Epoch 42/101
+ - 173s - loss: 5.8033e-04 - metric_fun: 0.6581 - val_loss: 8.9765e-04 - val_metric_fun: 0.6163
+
+Epoch 00042: val_loss did not improve from 0.00087
+Epoch 43/101
+ - 173s - loss: 5.7179e-04 - metric_fun: 0.6591 - val_loss: 8.9134e-04 - val_metric_fun: 0.6285
+
+Epoch 00043: val_loss did not improve from 0.00087
+Epoch 44/101
+ - 173s - loss: 5.7924e-04 - metric_fun: 0.6594 - val_loss: 9.0027e-04 - val_metric_fun: 0.6237
+
+Epoch 00044: val_loss did not improve from 0.00087
+Epoch 45/101
+ - 174s - loss: 5.5162e-04 - metric_fun: 0.6659 - val_loss: 9.1430e-04 - val_metric_fun: 0.6465
+
+Epoch 00045: val_loss did not improve from 0.00087
+Epoch 46/101
+ - 173s - loss: 5.3636e-04 - metric_fun: 0.6694 - val_loss: 9.0533e-04 - val_metric_fun: 0.6228
+
+Epoch 00046: val_loss did not improve from 0.00087
+Epoch 47/101
+ - 173s - loss: 5.3464e-04 - metric_fun: 0.6698 - val_loss: 8.7195e-04 - val_metric_fun: 0.6344
+
+Epoch 00047: val_loss did not improve from 0.00087
+Epoch 48/101
+ - 173s - loss: 5.2147e-04 - metric_fun: 0.6735 - val_loss: 8.7285e-04 - val_metric_fun: 0.6306
+
+Epoch 00048: val_loss did not improve from 0.00087
+Epoch 49/101
+ - 173s - loss: 5.2090e-04 - metric_fun: 0.6729 - val_loss: 9.1639e-04 - val_metric_fun: 0.6208
+
+Epoch 00049: val_loss did not improve from 0.00087
+Epoch 50/101
+ - 174s - loss: 5.0353e-04 - metric_fun: 0.6777 - val_loss: 8.7228e-04 - val_metric_fun: 0.6259
+
+Epoch 00050: val_loss did not improve from 0.00087
+Epoch 51/101
+ - 173s - loss: 4.9910e-04 - metric_fun: 0.6794 - val_loss: 8.6476e-04 - val_metric_fun: 0.6402
+
+Epoch 00051: val_loss improved from 0.00087 to 0.00086, saving model to ./weights/best_model_att.h5
+Epoch 52/101
+ - 173s - loss: 4.9592e-04 - metric_fun: 0.6790 - val_loss: 8.7591e-04 - val_metric_fun: 0.6403
+
+Epoch 00052: val_loss did not improve from 0.00086
+Epoch 53/101
+ - 173s - loss: 4.8942e-04 - metric_fun: 0.6814 - val_loss: 9.0079e-04 - val_metric_fun: 0.6387
+
+Epoch 00053: val_loss did not improve from 0.00086
+Epoch 54/101
+ - 173s - loss: 4.7882e-04 - metric_fun: 0.6824 - val_loss: 8.7284e-04 - val_metric_fun: 0.6335
+
+Epoch 00054: val_loss did not improve from 0.00086
+Epoch 55/101
+ - 173s - loss: 4.7621e-04 - metric_fun: 0.6844 - val_loss: 8.6681e-04 - val_metric_fun: 0.6481
+
+Epoch 00055: val_loss did not improve from 0.00086
+Epoch 56/101
+ - 174s - loss: 4.6249e-04 - metric_fun: 0.6872 - val_loss: 8.8679e-04 - val_metric_fun: 0.6418
+
+Epoch 00056: ReduceLROnPlateau reducing learning rate to 0.0010000000474974513.
+
+Epoch 00056: val_loss did not improve from 0.00086
+Epoch 57/101
+ - 173s - loss: 4.1086e-04 - metric_fun: 0.7004 - val_loss: 8.3436e-04 - val_metric_fun: 0.6566
+
+Epoch 00057: val_loss improved from 0.00086 to 0.00083, saving model to ./weights/best_model_att.h5
+Epoch 58/101
+ - 173s - loss: 3.9097e-04 - metric_fun: 0.7049 - val_loss: 8.3313e-04 - val_metric_fun: 0.6547
+
+Epoch 00058: val_loss improved from 0.00083 to 0.00083, saving model to ./weights/best_model_att.h5
+Epoch 59/101
+ - 173s - loss: 3.8182e-04 - metric_fun: 0.7081 - val_loss: 8.5203e-04 - val_metric_fun: 0.6493
+
+Epoch 00059: val_loss did not improve from 0.00083
+Epoch 60/101
+ - 173s - loss: 3.7886e-04 - metric_fun: 0.7093 - val_loss: 8.3239e-04 - val_metric_fun: 0.6602
+
+Epoch 00060: val_loss improved from 0.00083 to 0.00083, saving model to ./weights/best_model_att.h5
+Epoch 61/101
+ - 174s - loss: 3.7320e-04 - metric_fun: 0.7110 - val_loss: 8.3615e-04 - val_metric_fun: 0.6570
+
+Epoch 00061: val_loss did not improve from 0.00083
+Epoch 62/101
+ - 173s - loss: 3.6647e-04 - metric_fun: 0.7129 - val_loss: 8.3808e-04 - val_metric_fun: 0.6569
+
+Epoch 00062: val_loss did not improve from 0.00083
+Epoch 63/101
+ - 173s - loss: 3.6420e-04 - metric_fun: 0.7144 - val_loss: 8.4404e-04 - val_metric_fun: 0.6555
+
+Epoch 00063: val_loss did not improve from 0.00083
+Epoch 64/101
+ - 173s - loss: 3.6065e-04 - metric_fun: 0.7143 - val_loss: 8.5895e-04 - val_metric_fun: 0.6608
+
+Epoch 00064: val_loss did not improve from 0.00083
+Epoch 65/101
+ - 173s - loss: 3.5558e-04 - metric_fun: 0.7163 - val_loss: 8.5242e-04 - val_metric_fun: 0.6640
+
+Epoch 00065: val_loss did not improve from 0.00083
+Epoch 66/101
+ - 174s - loss: 3.5115e-04 - metric_fun: 0.7168 - val_loss: 8.7080e-04 - val_metric_fun: 0.6486
+
+Epoch 00066: val_loss did not improve from 0.00083
+Epoch 67/101
+ - 173s - loss: 3.4850e-04 - metric_fun: 0.7176 - val_loss: 8.6347e-04 - val_metric_fun: 0.6560
+
+Epoch 00067: val_loss did not improve from 0.00083
+Epoch 68/101
+ - 173s - loss: 3.4611e-04 - metric_fun: 0.7189 - val_loss: 8.6566e-04 - val_metric_fun: 0.6565
+
+Epoch 00068: val_loss did not improve from 0.00083
+Epoch 69/101
+ - 173s - loss: 3.4285e-04 - metric_fun: 0.7186 - val_loss: 8.6216e-04 - val_metric_fun: 0.6544
+
+Epoch 00069: val_loss did not improve from 0.00083
+Epoch 70/101
+ - 173s - loss: 3.3590e-04 - metric_fun: 0.7220 - val_loss: 8.7835e-04 - val_metric_fun: 0.6614
+
+Epoch 00070: val_loss did not improve from 0.00083
+Epoch 71/101
+ - 174s - loss: 3.3793e-04 - metric_fun: 0.7199 - val_loss: 8.9147e-04 - val_metric_fun: 0.6501
+
+Epoch 00071: val_loss did not improve from 0.00083
+Epoch 72/101
+ - 173s - loss: 3.3041e-04 - metric_fun: 0.7227 - val_loss: 8.5929e-04 - val_metric_fun: 0.6562
+
+Epoch 00072: val_loss did not improve from 0.00083
+Epoch 73/101
+ - 173s - loss: 3.2780e-04 - metric_fun: 0.7244 - val_loss: 8.6364e-04 - val_metric_fun: 0.6621
+
+Epoch 00073: val_loss did not improve from 0.00083
+Epoch 74/101
+ - 173s - loss: 3.2502e-04 - metric_fun: 0.7251 - val_loss: 8.7968e-04 - val_metric_fun: 0.6614
+
+Epoch 00074: val_loss did not improve from 0.00083
+Epoch 75/101
+ - 173s - loss: 3.2210e-04 - metric_fun: 0.7255 - val_loss: 8.6589e-04 - val_metric_fun: 0.6620
+
+Epoch 00075: val_loss did not improve from 0.00083
+Epoch 76/101
+ - 174s - loss: 3.2105e-04 - metric_fun: 0.7246 - val_loss: 8.5759e-04 - val_metric_fun: 0.6625
+
+Epoch 00076: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+
+Epoch 00076: val_loss did not improve from 0.00083
+Epoch 77/101
+ - 173s - loss: 3.0075e-04 - metric_fun: 0.7311 - val_loss: 8.5100e-04 - val_metric_fun: 0.6643
+
+Epoch 00077: val_loss did not improve from 0.00083
+Epoch 78/101
+ - 173s - loss: 2.9061e-04 - metric_fun: 0.7339 - val_loss: 8.6092e-04 - val_metric_fun: 0.6636
+
+Epoch 00078: val_loss did not improve from 0.00083
+Epoch 79/101
+ - 173s - loss: 2.8607e-04 - metric_fun: 0.7353 - val_loss: 8.5459e-04 - val_metric_fun: 0.6673
+
+Epoch 00079: val_loss did not improve from 0.00083
+Epoch 80/101
+ - 173s - loss: 2.8322e-04 - metric_fun: 0.7359 - val_loss: 8.5293e-04 - val_metric_fun: 0.6706
+
+Epoch 00080: val_loss did not improve from 0.00083
+Epoch 81/101
+ - 173s - loss: 2.7814e-04 - metric_fun: 0.7369 - val_loss: 8.6428e-04 - val_metric_fun: 0.6636
+
+Epoch 00081: val_loss did not improve from 0.00083
+Epoch 82/101
+ - 174s - loss: 2.7974e-04 - metric_fun: 0.7371 - val_loss: 8.7110e-04 - val_metric_fun: 0.6634
+
+Epoch 00082: val_loss did not improve from 0.00083
+Epoch 83/101
+ - 173s - loss: 2.7630e-04 - metric_fun: 0.7379 - val_loss: 8.6596e-04 - val_metric_fun: 0.6645
+
+Epoch 00083: val_loss did not improve from 0.00083
+Epoch 84/101
+ - 173s - loss: 2.7450e-04 - metric_fun: 0.7384 - val_loss: 8.6080e-04 - val_metric_fun: 0.6653
+
+Epoch 00084: val_loss did not improve from 0.00083
+Epoch 85/101
+ - 173s - loss: 2.7296e-04 - metric_fun: 0.7392 - val_loss: 8.6878e-04 - val_metric_fun: 0.6622
+
+Epoch 00085: val_loss did not improve from 0.00083
+Epoch 86/101
+ - 173s - loss: 2.7108e-04 - metric_fun: 0.7398 - val_loss: 8.5325e-04 - val_metric_fun: 0.6671
+
+Epoch 00086: val_loss did not improve from 0.00083
+Epoch 87/101
+ - 174s - loss: 2.7042e-04 - metric_fun: 0.7394 - val_loss: 8.4987e-04 - val_metric_fun: 0.6691
+
+Epoch 00087: val_loss did not improve from 0.00083
+Epoch 88/101
+ - 173s - loss: 2.6816e-04 - metric_fun: 0.7406 - val_loss: 8.6307e-04 - val_metric_fun: 0.6687
+
+Epoch 00088: val_loss did not improve from 0.00083
+Epoch 89/101
+ - 173s - loss: 2.6557e-04 - metric_fun: 0.7413 - val_loss: 8.5419e-04 - val_metric_fun: 0.6684
+
+Epoch 00089: val_loss did not improve from 0.00083
+Epoch 90/101
+ - 173s - loss: 2.6457e-04 - metric_fun: 0.7412 - val_loss: 8.7817e-04 - val_metric_fun: 0.6652
+
+Epoch 00090: val_loss did not improve from 0.00083
+Epoch 91/101
+ - 173s - loss: 2.6087e-04 - metric_fun: 0.7425 - val_loss: 8.7137e-04 - val_metric_fun: 0.6699
+
+Epoch 00091: val_loss did not improve from 0.00083
+Epoch 92/101
+ - 174s - loss: 2.6049e-04 - metric_fun: 0.7423 - val_loss: 8.7173e-04 - val_metric_fun: 0.6682
+
+Epoch 00092: val_loss did not improve from 0.00083
+Epoch 93/101
+ - 173s - loss: 2.5803e-04 - metric_fun: 0.7430 - val_loss: 8.6530e-04 - val_metric_fun: 0.6703
+
+Epoch 00093: val_loss did not improve from 0.00083
+Epoch 94/101
+ - 173s - loss: 2.5731e-04 - metric_fun: 0.7430 - val_loss: 8.7097e-04 - val_metric_fun: 0.6697
+
+Epoch 00094: val_loss did not improve from 0.00083
+Epoch 95/101
+ - 173s - loss: 2.5660e-04 - metric_fun: 0.7435 - val_loss: 8.7260e-04 - val_metric_fun: 0.6681
+
+Epoch 00095: val_loss did not improve from 0.00083
+Epoch 96/101
+ - 173s - loss: 2.5280e-04 - metric_fun: 0.7453 - val_loss: 8.5997e-04 - val_metric_fun: 0.6710
+
+Epoch 00096: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+
+Epoch 00096: val_loss did not improve from 0.00083
+Epoch 97/101
+ - 174s - loss: 2.4723e-04 - metric_fun: 0.7459 - val_loss: 8.6564e-04 - val_metric_fun: 0.6716
+
+Epoch 00097: val_loss did not improve from 0.00083
+Epoch 98/101
+ - 173s - loss: 2.4252e-04 - metric_fun: 0.7482 - val_loss: 8.7267e-04 - val_metric_fun: 0.6700
+
+Epoch 00098: val_loss did not improve from 0.00083
+Epoch 99/101
+ - 173s - loss: 2.4101e-04 - metric_fun: 0.7476 - val_loss: 8.7711e-04 - val_metric_fun: 0.6714
+
+Epoch 00099: val_loss did not improve from 0.00083
+Epoch 100/101
+ - 173s - loss: 2.3901e-04 - metric_fun: 0.7492 - val_loss: 8.8241e-04 - val_metric_fun: 0.6694
+
+Epoch 00100: val_loss did not improve from 0.00083
+Epoch 101/101
+ - 173s - loss: 2.3934e-04 - metric_fun: 0.7489 - val_loss: 8.7427e-04 - val_metric_fun: 0.6701
+
+Epoch 00101: val_loss did not improve from 0.00083
+
+
+
+
+the accuracy of test data is: 99.00%
